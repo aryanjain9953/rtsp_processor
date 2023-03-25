@@ -6,21 +6,6 @@
     <title>Video Streaming</title>
 </head>
 <body>
-    <video id="video" controls autoplay></video>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script>
-        function startStream() {
-            if (Hls.isSupported()) {
-                const video = document.getElementById('video');
-                const hls = new Hls();
-                hls.loadSource('http://localhost:8000/video.mp4');
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    video.play();
-                });
-            }
-        }
-        startStream();
-    </script>
+    <iframe src="https://6664-110-235-217-238.in.ngrok.io/embed.html"></iframe>
 </body>
 </html>
