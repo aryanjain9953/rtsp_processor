@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RTSP Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  <body>
+    <img id="video" alt="RTSP Stream">
+    <script>
+      var video = document.getElementById("video");
+
+      function startStream(streamUrl) {
+        if (Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(streamUrl);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play();
+          });
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+          video.src = streamUrl;
+          video.addEventListener("loadedmetadata", function() {
+            video.play();
+          });
+        }
+      }
+
+      startStream(' https://d75c-110-235-217-238.in.ngrok.io');
+    </script>
+  </body>
+</html>
